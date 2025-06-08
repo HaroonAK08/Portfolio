@@ -113,6 +113,7 @@ const SkillItem = styled.li`
   &::before {
     content: "▹";
     color: var(--primary);
+
     margin-right: 10px;
     font-size: 1.2rem;
   }

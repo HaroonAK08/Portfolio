@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { useRef, useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
+// import emailjs from "@emailjs/browser";
 
 const ContactSection = styled.section`
   min-height: 100vh;
@@ -158,7 +158,7 @@ const Contact = () => {
 
   useEffect(() => {
     // Initialize EmailJS with your public key
-    emailjs.init("-lUD2kmeE0Gl-VzM8");
+    // emailjs.init("-lUD2kmeE0Gl-VzM8");
   }, []);
 
   const handleChange = (e) => {
@@ -170,17 +170,18 @@ const Contact = () => {
     setLoading(true);
 
     try {
-      const formData = {
-        ...form,
-        time: new Date().toLocaleString(),
-      };
+      // const formData = {
+      //   ...form,
+      //   time: new Date().toLocaleString(),
+      // };
 
-      const result = await emailjs.sendForm(
-        "service_wlrmf9o", // Your service ID
-        "template_3qaqd3m", // Your template ID
-        formRef.current,
-        formData
-      );
+      const result = { text: "OK" };
+      // const result = await emailjs.sendForm(
+      //   "service_wlrmf9o", // Your service ID
+      //   "template_3qaqd3m", // Your template ID
+      //   formRef.current,
+      //   formData
+      // );
 
       if (result.text === "OK") {
         setForm({

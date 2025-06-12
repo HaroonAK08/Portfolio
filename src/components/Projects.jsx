@@ -103,7 +103,7 @@ const Projects = () => {
       description:
         "A full-featured e-commerce platform with user authentication, product management, and secure payment processing. Built with modern web technologies for a seamless shopping experience.",
       technologies: ["React.js", "Bootstrap", "Redux"],
-      link: "https://github.com/HaroonAK08/Pluto-Store",
+      link: "pluto.haroonkhan.me",
     },
     {
       title: "CV Maker",

@@ -110,7 +110,7 @@ const Projects = () => {
       description:
         "A professional CV builder application that helps users create and customize their resumes with modern templates and real-time preview functionality.",
       technologies: ["React.js", "JavaScript", "CSS", "HTML"],
-      link: "https://github.com/HaroonAK08/CV-Maker",
+      link: "https://cvmaker.haroonkhan.me/",
     },
     {
       title: "Oono",

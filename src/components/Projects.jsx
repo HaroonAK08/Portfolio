@@ -1,169 +1,333 @@
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaCheck } from "react-icons/fa";
 
 const ProjectsSection = styled.section`
-  min-height: 100vh;
-  padding: 100px 10%;
-  background: var(--dark);
+  padding: 120px 10%;
+  position: relative;
+  background: var(--bg-card);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--border-subtle),
+      transparent
+    );
+  }
+`;
+
+const Container = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+`;
+
+const SectionLabel = styled(motion.div)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--primary);
+  margin-bottom: 1rem;
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: 2.5rem;
-  color: var(--light);
-  margin-bottom: 3rem;
-  position: relative;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 3.5rem;
+  letter-spacing: -1px;
+  line-height: 1.2;
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 60px;
-    height: 4px;
+  span {
     background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 `;
 
 const ProjectCard = styled(motion.div)`
-  background: var(--darker);
-  border-radius: 15px;
-  padding: 2rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
   position: relative;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(108, 99, 255, 0.1);
+  overflow: hidden;
+  transition: var(--transition);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: ${(props) => props.accent || "var(--gradient)"};
+    opacity: 0;
+    transition: var(--transition);
+  }
 
   &:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.1);
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(108, 99, 255, 0.06);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    padding: 1.8rem;
   }
 `;
 
-const ProjectTitle = styled.h3`
-  color: var(--light);
-  font-size: 1.5rem;
+const ProjectHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: 1rem;
-  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+
+const ProjectEmoji = styled.span`
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  display: block;
+`;
+
+const ProjectTitle = styled.h3`
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+`;
+
+const ProjectLinks = styled.div`
+  display: flex;
+  gap: 0.8rem;
+`;
+
+const ProjectLink = styled(motion.a)`
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(108, 99, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  transition: var(--transition);
+
+  &:hover {
+    color: var(--primary);
+    border-color: var(--border-hover);
+    background: rgba(108, 99, 255, 0.15);
+  }
 `;
 
 const ProjectDescription = styled.p`
-  color: var(--gray);
   font-size: 1rem;
-  line-height: 1.6;
+  color: var(--text-secondary);
+  line-height: 1.8;
   margin-bottom: 1.5rem;
 `;
 
 const TechStack = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
 `;
 
-const Tech = styled.span`
-  color: var(--primary);
-  font-size: 0.9rem;
-  background: rgba(108, 99, 255, 0.1);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-weight: 500;
+const TechBadge = styled.span`
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  background: ${(props) => props.bg || "rgba(108, 99, 255, 0.08)"};
+  color: ${(props) => props.color || "var(--primary-light)"};
+  border: 1px solid ${(props) => props.borderColor || "rgba(108, 99, 255, 0.15)"};
+  font-family: "JetBrains Mono", monospace;
 `;
 
-const ProjectLinks = styled.div`
+const Highlights = styled.div`
+  display: grid;
+  gap: 0.5rem;
+`;
+
+const HighlightItem = styled.div`
   display: flex;
-  gap: 1rem;
-`;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
 
-const ProjectLink = styled.a`
-  color: var(--light);
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  padding: 0.5rem;
-  border-radius: 50%;
-  background: rgba(108, 99, 255, 0.1);
-
-  &:hover {
-    color: var(--primary);
-    transform: translateY(-3px);
-    background: rgba(108, 99, 255, 0.2);
+  svg {
+    color: var(--accent);
+    font-size: 0.7rem;
+    flex-shrink: 0;
   }
 `;
 
-const Projects = () => {
-  const projects = [
-    {
-      title: "Pluto Store",
-      description:
-        "A full-featured e-commerce platform with user authentication, product management, and secure payment processing. Built with modern web technologies for a seamless shopping experience.",
-      technologies: ["React.js", "Bootstrap", "Redux"],
-      link: "https://pluto.haroonkhan.me",
-    },
-    {
-      title: "CV Maker",
-      description:
-        "A professional CV builder application that helps users create and customize their resumes with modern templates and real-time preview functionality.",
-      technologies: ["React.js", "JavaScript", "CSS", "HTML"],
-      link: "https://cvmaker.haroonkhan.me/",
-    },
-    {
-      title: "Oono",
-      description:
-        "A MERN stack project showcasing full-stack development capabilities with modern features and robust architecture.",
-      technologies: ["MongoDB", "Express.js", "React.js", "Node.js"],
-      link: "#",
-    },
-    {
-      title: "Rentarround",
-      description:
-        "A professional React Native mobile application developed for property rental services, featuring location-based search and real-time updates.",
-      technologies: ["React Native", "JavaScript", "Mobile Development"],
-      link: "#",
-    },
-  ];
+const projects = [
+  {
+    emoji: "\uD83D\uDED2",
+    title: "Enterprise E-Commerce Platform",
+    description:
+      "Built a high-performance e-commerce platform with advanced product filtering, shopping cart functionality, and scalable product catalog management.",
+    technologies: ["React", "Redux", "Node.js", "MongoDB", "Tailwind CSS"],
+    highlights: [
+      "Modular architecture for maintainability",
+      "Optimized for performance with large product catalogs",
+      "Fully responsive UI for desktop & mobile",
+    ],
+    accent: "linear-gradient(135deg, #6c63ff, #ff6584)",
+    githubLink: "https://github.com/HaroonAK08/Pluto-Store",
+    liveLink: "https://pluto.haroonkhan.me",
+  },
+  {
+    emoji: "\u2708\uFE0F",
+    title: "Flight Search & Booking Mobile App",
+    description:
+      "Developed a cross-platform flight booking application using React Native integrated with real-time flight APIs, authentication, and search optimization.",
+    technologies: ["React Native", "Node.js", "REST APIs"],
+    highlights: [
+      "Smooth, intuitive mobile UX",
+      "Secure authentication & booking workflow",
+      "External flight data API integration for real-time updates",
+    ],
+    accent: "linear-gradient(135deg, #00d4aa, #6c63ff)",
+    githubLink: "#",
+    liveLink: null,
+  },
+  {
+    emoji: "\uD83C\uDF10",
+    title: "Oono \u2014 Social & Collaboration Platform",
+    description:
+      "Developed Oono, a modern social collaboration platform connecting users through messaging, groups, and shared workspaces.",
+    technologies: [
+      "React.js",
+      "Django REST Framework",
+      "MongoDB",
+      "Tailwind CSS",
+    ],
+    highlights: [
+      "Real-time messaging and notifications",
+      "Secure multi-role authentication system",
+      "Scalable backend supporting thousands of concurrent users",
+      "Fully responsive UI for web and mobile",
+    ],
+    accent: "linear-gradient(135deg, #ff6584, #ffd166)",
+    githubLink: "#",
+    liveLink: null,
+  },
+];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const Projects = () => {
   return (
     <ProjectsSection id="projects">
-      <SectionTitle
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        My Projects
-      </SectionTitle>
-      <ProjectsGrid>
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <ProjectTitle>{project.title}</ProjectTitle>
-            <ProjectDescription>{project.description}</ProjectDescription>
-            <TechStack>
-              {project.technologies.map((tech, techIndex) => (
-                <Tech key={techIndex}>{tech}</Tech>
-              ))}
-            </TechStack>
-            <ProjectLink
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
+      <Container>
+        <SectionLabel
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          Selected Projects
+        </SectionLabel>
+        <SectionTitle
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Things I&apos;ve <span>built</span>
+        </SectionTitle>
+
+        <ProjectsGrid>
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.12 }}
+              accent={project.accent}
             >
-              View Project
-            </ProjectLink>
-          </ProjectCard>
-        ))}
-      </ProjectsGrid>
+              <ProjectEmoji>{project.emoji}</ProjectEmoji>
+              <ProjectHeader>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectLinks>
+                  {project.githubLink && project.githubLink !== "#" && (
+                    <ProjectLink
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FaGithub />
+                    </ProjectLink>
+                  )}
+                  {project.liveLink && (
+                    <ProjectLink
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FaExternalLinkAlt style={{ fontSize: "0.85rem" }} />
+                    </ProjectLink>
+                  )}
+                </ProjectLinks>
+              </ProjectHeader>
+
+              <ProjectDescription>{project.description}</ProjectDescription>
+
+              <TechStack>
+                {project.technologies.map((tech, i) => (
+                  <TechBadge key={i}>{tech}</TechBadge>
+                ))}
+              </TechStack>
+
+              <Highlights>
+                {project.highlights.map((highlight, i) => (
+                  <HighlightItem key={i}>
+                    <FaCheck />
+                    {highlight}
+                  </HighlightItem>
+                ))}
+              </Highlights>
+            </ProjectCard>
+          ))}
+        </ProjectsGrid>
+      </Container>
     </ProjectsSection>
   );
 };

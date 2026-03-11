@@ -25,20 +25,18 @@ const Nav = styled(motion.nav)`
   justify-content: space-between;
   align-items: center;
   background: ${(props) =>
-    props.scrolled ? "rgba(11, 13, 23, 0.92)" : "transparent"};
-  backdrop-filter: ${(props) => (props.scrolled ? "blur(20px)" : "none")};
+    props.scrolled ? "rgba(250, 248, 245, 0.9)" : "transparent"};
+  backdrop-filter: ${(props) => (props.scrolled ? "blur(12px)" : "none")};
   border-bottom: ${(props) =>
     props.scrolled ? "1px solid var(--border-subtle)" : "none"};
   z-index: 1000;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 `;
 
 const Logo = styled(motion.a)`
   font-size: 1.4rem;
   font-weight: 800;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary);
   letter-spacing: -0.5px;
   cursor: pointer;
 `;
@@ -65,23 +63,22 @@ const NavLink = styled.a`
 
   &:hover {
     color: var(--text-primary);
-    background: rgba(108, 99, 255, 0.08);
+    background: rgba(0, 0, 0, 0.04);
   }
 `;
 
 const CTAButton = styled(motion.a)`
-  color: var(--primary);
+  color: #fff;
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.5rem 1.2rem;
   border-radius: var(--radius-sm);
-  border: 1.5px solid var(--primary);
+  background: var(--primary);
   transition: var(--transition);
   margin-left: 0.5rem;
 
   &:hover {
-    background: rgba(108, 99, 255, 0.1);
-    box-shadow: 0 0 20px rgba(108, 99, 255, 0.15);
+    background: var(--primary-dark);
   }
 `;
 
@@ -97,7 +94,7 @@ const MobileMenuButton = styled.button`
   transition: var(--transition);
 
   &:hover {
-    background: rgba(108, 99, 255, 0.1);
+    background: rgba(0, 0, 0, 0.05);
   }
 
   @media (max-width: 768px) {
@@ -113,8 +110,8 @@ const MobileMenu = styled(motion.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(11, 13, 23, 0.97);
-  backdrop-filter: blur(30px);
+  background: rgba(250, 248, 245, 0.98);
+  backdrop-filter: blur(16px);
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -133,7 +130,7 @@ const MobileNavLink = styled(motion.a)`
   transition: var(--transition);
 
   &:hover {
-    background: rgba(108, 99, 255, 0.1);
+    background: rgba(0, 0, 0, 0.04);
     color: var(--primary);
   }
 `;
@@ -148,9 +145,7 @@ const Footer = styled.footer`
   font-size: 0.85rem;
 
   span {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
     font-weight: 600;
   }
 `;
@@ -238,7 +233,7 @@ function App() {
       </MainContent>
 
       <Footer>
-        Built with passion by <span>Haroon Ahmad Khan</span> &copy;{" "}
+        Built by <span>Haroon Ahmad Khan</span> &copy;{" "}
         {new Date().getFullYear()}
       </Footer>
     </AppContainer>

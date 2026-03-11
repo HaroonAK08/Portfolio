@@ -1,18 +1,7 @@
 import styled from "@emotion/styled";
-import { keyframes } from "@emotion/react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaArrowRight } from "react-icons/fa";
 import dpImage from "../assets/DP.jpeg";
-
-const float = keyframes`
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
-`;
-
-const pulse = keyframes`
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
-`;
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -21,40 +10,6 @@ const HeroSection = styled.section`
   padding: 120px 10% 80px;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 800px;
-    height: 800px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(108, 99, 255, 0.12) 0%,
-      transparent 70%
-    );
-    animation: ${pulse} 8s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -30%;
-    left: -10%;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(255, 101, 132, 0.08) 0%,
-      transparent 70%
-    );
-    animation: ${pulse} 10s ease-in-out infinite 2s;
-    pointer-events: none;
-  }
 `;
 
 const HeroContent = styled.div`
@@ -100,38 +55,26 @@ const HeroImageColumn = styled(motion.div)`
 
 const ImageWrapper = styled.div`
   position: relative;
-  width: 450px;
-  height: 450px;
+  width: 420px;
+  height: 420px;
 
   @media (max-width: 1024px) {
-    width: 360px;
-    height: 360px;
+    width: 340px;
+    height: 340px;
   }
 
   @media (max-width: 480px) {
-    width: 280px;
-    height: 280px;
+    width: 260px;
+    height: 260px;
   }
 
   &::before {
     content: "";
     position: absolute;
-    inset: -4px;
+    inset: -3px;
     border-radius: 50%;
-    background: var(--gradient);
+    background: var(--primary);
     z-index: -1;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: -20px;
-    border-radius: 50%;
-    background: var(--gradient);
-    opacity: 0.15;
-    filter: blur(30px);
-    z-index: -2;
-    animation: ${pulse} 4s ease-in-out infinite;
   }
 `;
 
@@ -147,13 +90,13 @@ const TagLine = styled(motion.div)`
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(108, 99, 255, 0.08);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 50px;
   padding: 0.5rem 1.2rem;
   margin-bottom: 2rem;
-  font-size: 0.88rem;
-  color: var(--primary-light);
+  font-size: 0.85rem;
+  color: var(--primary);
   font-weight: 500;
 
   &::before {
@@ -162,35 +105,33 @@ const TagLine = styled(motion.div)`
     height: 8px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
   }
 `;
 
 const Name = styled(motion.h1)`
-  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 1.2rem;
   letter-spacing: -2px;
+  color: var(--text-primary);
 
   span {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
   }
 `;
 
 const Heading = styled(motion.h2)`
-  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
   color: var(--text-secondary);
   font-weight: 500;
   margin-bottom: 1.8rem;
   max-width: 700px;
-  line-height: 1.5;
+  line-height: 1.6;
 `;
 
 const Description = styled(motion.p)`
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-muted);
   max-width: 620px;
   margin-bottom: 2.5rem;
@@ -213,19 +154,19 @@ const PrimaryButton = styled(motion.a)`
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.9rem 2rem;
-  background: var(--gradient);
+  padding: 0.85rem 1.8rem;
+  background: var(--primary);
   color: #fff;
   font-weight: 600;
   font-size: 0.95rem;
   border-radius: var(--radius-md);
   transition: var(--transition);
-  box-shadow: 0 4px 25px rgba(108, 99, 255, 0.3);
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 8px 40px rgba(108, 99, 255, 0.45);
-    transform: translateY(-2px);
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   }
 
   svg {
@@ -240,7 +181,7 @@ const SecondaryButton = styled(motion.a)`
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.9rem 2rem;
+  padding: 0.85rem 1.8rem;
   background: transparent;
   color: var(--text-primary);
   font-weight: 600;
@@ -252,8 +193,7 @@ const SecondaryButton = styled(motion.a)`
 
   &:hover {
     border-color: var(--primary);
-    background: rgba(108, 99, 255, 0.06);
-    box-shadow: 0 0 25px rgba(108, 99, 255, 0.12);
+    color: var(--primary);
   }
 `;
 
@@ -283,19 +223,8 @@ const SocialLink = styled(motion.a)`
 
   &:hover {
     color: var(--primary);
-    background: rgba(108, 99, 255, 0.08);
-    transform: translateY(-2px);
+    background: rgba(0, 0, 0, 0.04);
   }
-`;
-
-const FloatingShape = styled(motion.div)`
-  position: absolute;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
-  background: rgba(108, 99, 255, 0.03);
-  pointer-events: none;
-  animation: ${float} ${(props) => props.duration || "6s"} ease-in-out infinite;
-  animation-delay: ${(props) => props.delay || "0s"};
 `;
 
 const StatsRow = styled(motion.div)`
@@ -319,9 +248,7 @@ const StatItem = styled.div`
   .number {
     font-size: 2rem;
     font-weight: 800;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
     line-height: 1;
   }
   .label {
@@ -345,22 +272,6 @@ const itemVariants = {
 const Hero = () => {
   return (
     <HeroSection id="home">
-      <FloatingShape
-        style={{ top: "15%", right: "10%", width: 120, height: 120 }}
-        duration="7s"
-        delay="0s"
-      />
-      <FloatingShape
-        style={{ bottom: "20%", right: "25%", width: 80, height: 80 }}
-        duration="5s"
-        delay="1s"
-      />
-      <FloatingShape
-        style={{ top: "50%", left: "5%", width: 60, height: 60 }}
-        duration="8s"
-        delay="2s"
-      />
-
       <HeroContent
         as={motion.div}
         variants={containerVariants}

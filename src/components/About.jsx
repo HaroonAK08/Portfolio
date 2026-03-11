@@ -9,24 +9,10 @@ import {
 } from "react-icons/fa";
 
 const AboutSection = styled.section`
-  padding: 120px 10%;
+  padding: 100px 10%;
   position: relative;
-  background: var(--bg-dark);
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--border-subtle),
-      transparent
-    );
-  }
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
 `;
 
 const Container = styled.div`
@@ -35,9 +21,6 @@ const Container = styled.div`
 `;
 
 const SectionLabel = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -55,9 +38,7 @@ const SectionTitle = styled(motion.h2)`
   line-height: 1.2;
 
   span {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
   }
 `;
 
@@ -86,35 +67,16 @@ const StrengthsGrid = styled.div`
 `;
 
 const StrengthCard = styled(motion.div)`
-  background: var(--bg-card);
+  background: var(--bg-dark);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.5rem;
   transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--gradient);
-    opacity: 0;
-    transition: var(--transition);
-  }
 
   &:hover {
     border-color: var(--border-hover);
-    background: var(--bg-card-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(108, 99, 255, 0.08);
-
-    &::before {
-      opacity: 1;
-    }
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
   }
 `;
 
@@ -122,7 +84,7 @@ const StrengthIcon = styled.div`
   width: 42px;
   height: 42px;
   border-radius: var(--radius-sm);
-  background: rgba(108, 99, 255, 0.1);
+  background: rgba(43, 90, 77, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;

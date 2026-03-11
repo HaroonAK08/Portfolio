@@ -3,24 +3,10 @@ import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaCheck } from "react-icons/fa";
 
 const ProjectsSection = styled.section`
-  padding: 120px 10%;
+  padding: 100px 10%;
   position: relative;
-  background: var(--bg-card);
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--border-subtle),
-      transparent
-    );
-  }
+  background: var(--bg-dark);
+  border-top: 1px solid var(--border-subtle);
 `;
 
 const Container = styled.div`
@@ -29,9 +15,6 @@ const Container = styled.div`
 `;
 
 const SectionLabel = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -49,9 +32,7 @@ const SectionTitle = styled(motion.h2)`
   line-height: 1.2;
 
   span {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
   }
 `;
 
@@ -61,7 +42,7 @@ const ProjectsGrid = styled.div`
 `;
 
 const ProjectCard = styled(motion.div)`
-  background: var(--bg-dark);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   padding: 2.5rem;
@@ -76,15 +57,14 @@ const ProjectCard = styled(motion.div)`
     left: 0;
     right: 0;
     height: 3px;
-    background: ${(props) => props.accent || "var(--gradient)"};
+    background: ${(props) => props.accentColor || "var(--primary)"};
     opacity: 0;
     transition: var(--transition);
   }
 
   &:hover {
     border-color: var(--border-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(108, 99, 255, 0.06);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
 
     &::before {
       opacity: 1;
@@ -127,7 +107,7 @@ const ProjectLink = styled(motion.a)`
   width: 38px;
   height: 38px;
   border-radius: var(--radius-sm);
-  background: rgba(108, 99, 255, 0.08);
+  background: var(--bg-dark);
   border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -139,7 +119,6 @@ const ProjectLink = styled(motion.a)`
   &:hover {
     color: var(--primary);
     border-color: var(--border-hover);
-    background: rgba(108, 99, 255, 0.15);
   }
 `;
 
@@ -162,9 +141,9 @@ const TechBadge = styled.span`
   font-weight: 600;
   padding: 0.35rem 0.85rem;
   border-radius: 50px;
-  background: ${(props) => props.bg || "rgba(108, 99, 255, 0.08)"};
-  color: ${(props) => props.color || "var(--primary-light)"};
-  border: 1px solid ${(props) => props.borderColor || "rgba(108, 99, 255, 0.15)"};
+  background: rgba(43, 90, 77, 0.06);
+  color: var(--primary);
+  border: 1px solid rgba(43, 90, 77, 0.12);
   font-family: "JetBrains Mono", monospace;
 `;
 
@@ -200,7 +179,7 @@ const projects = [
       "Optimized for performance with large product catalogs",
       "Fully responsive UI for desktop & mobile",
     ],
-    accent: "linear-gradient(135deg, #6c63ff, #ff6584)",
+    accentColor: "#c07d45",
     githubLink: "https://github.com/HaroonAK08/Pluto-Store",
     liveLink: "https://pluto.haroonkhan.me",
   },
@@ -215,7 +194,7 @@ const projects = [
       "Secure authentication & booking workflow",
       "External flight data API integration for real-time updates",
     ],
-    accent: "linear-gradient(135deg, #00d4aa, #6c63ff)",
+    accentColor: "#2b5a4d",
     githubLink: "#",
     liveLink: null,
   },
@@ -236,7 +215,7 @@ const projects = [
       "Scalable backend supporting thousands of concurrent users",
       "Fully responsive UI for web and mobile",
     ],
-    accent: "linear-gradient(135deg, #ff6584, #ffd166)",
+    accentColor: "#8b6f4e",
     githubLink: "#",
     liveLink: null,
   },
@@ -277,7 +256,7 @@ const Projects = () => {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: index * 0.12 }}
-              accent={project.accent}
+              accentColor={project.accentColor}
             >
               <ProjectEmoji>{project.emoji}</ProjectEmoji>
               <ProjectHeader>

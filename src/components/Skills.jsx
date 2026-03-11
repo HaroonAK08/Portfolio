@@ -22,24 +22,10 @@ import {
 } from "react-icons/si";
 
 const SkillsSection = styled.section`
-  padding: 120px 10%;
+  padding: 100px 10%;
   position: relative;
-  background: var(--bg-card);
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--border-subtle),
-      transparent
-    );
-  }
+  background: var(--bg-dark);
+  border-top: 1px solid var(--border-subtle);
 `;
 
 const Container = styled.div`
@@ -48,9 +34,6 @@ const Container = styled.div`
 `;
 
 const SectionLabel = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -68,9 +51,7 @@ const SectionTitle = styled(motion.h2)`
   line-height: 1.2;
 
   span {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
   }
 `;
 
@@ -85,7 +66,7 @@ const CategoriesGrid = styled.div`
 `;
 
 const CategoryCard = styled(motion.div)`
-  background: var(--bg-dark);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 2rem;
@@ -100,19 +81,17 @@ const CategoryCard = styled(motion.div)`
     left: 0;
     width: 3px;
     height: 100%;
-    background: ${(props) => props.accent || "var(--gradient)"};
-    opacity: 0.6;
+    background: ${(props) => props.accentColor || "var(--primary)"};
+    opacity: 0.5;
     transition: var(--transition);
   }
 
   &:hover {
     border-color: var(--border-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(108, 99, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 
     &::before {
       opacity: 1;
-      width: 4px;
     }
   }
 `;
@@ -128,7 +107,7 @@ const CategoryIcon = styled.div`
   width: 40px;
   height: 40px;
   border-radius: var(--radius-sm);
-  background: ${(props) => props.bg || "rgba(108, 99, 255, 0.1)"};
+  background: ${(props) => props.bg || "rgba(43, 90, 77, 0.08)"};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,8 +131,8 @@ const SkillChip = styled(motion.div)`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: rgba(108, 99, 255, 0.05);
+  padding: 0.45rem 0.9rem;
+  background: var(--bg-dark);
   border: 1px solid var(--border-subtle);
   border-radius: 50px;
   font-size: 0.85rem;
@@ -163,14 +142,12 @@ const SkillChip = styled(motion.div)`
 
   svg {
     font-size: 0.9rem;
-    color: var(--primary-light);
+    color: var(--text-muted);
   }
 
   &:hover {
-    background: rgba(108, 99, 255, 0.1);
     border-color: var(--border-hover);
     color: var(--text-primary);
-    transform: translateY(-2px);
   }
 `;
 
@@ -188,9 +165,9 @@ const categories = [
   {
     title: "Frontend Development",
     icon: <FaReact />,
-    color: "#61dafb",
-    bg: "rgba(97, 218, 251, 0.1)",
-    accent: "linear-gradient(180deg, #61dafb, #6c63ff)",
+    color: "#0891b2",
+    bg: "rgba(8, 145, 178, 0.08)",
+    accentColor: "#0891b2",
     skills: [
       { name: "React.js", icon: <FaReact /> },
       { name: "Next.js", icon: <SiNextdotjs /> },
@@ -207,8 +184,8 @@ const categories = [
     title: "Backend Development",
     icon: <FaNodeJs />,
     color: "#68a063",
-    bg: "rgba(104, 160, 99, 0.1)",
-    accent: "linear-gradient(180deg, #68a063, #6c63ff)",
+    bg: "rgba(104, 160, 99, 0.08)",
+    accentColor: "#68a063",
     skills: [
       { name: "Node.js", icon: <FaNodeJs /> },
       { name: "Express.js", icon: <SiExpress /> },
@@ -223,9 +200,9 @@ const categories = [
   {
     title: "Databases",
     icon: <FaDatabase />,
-    color: "#00d4aa",
-    bg: "rgba(0, 212, 170, 0.1)",
-    accent: "linear-gradient(180deg, #00d4aa, #6c63ff)",
+    color: "#2b5a4d",
+    bg: "rgba(43, 90, 77, 0.08)",
+    accentColor: "#2b5a4d",
     skills: [
       { name: "MongoDB", icon: <SiMongodb /> },
       { name: "Optimized Queries", icon: null },
@@ -235,9 +212,9 @@ const categories = [
   {
     title: "Tools & Workflow",
     icon: <FaGitAlt />,
-    color: "#f05032",
-    bg: "rgba(240, 80, 50, 0.1)",
-    accent: "linear-gradient(180deg, #f05032, #6c63ff)",
+    color: "#e5553a",
+    bg: "rgba(229, 85, 58, 0.08)",
+    accentColor: "#e5553a",
     skills: [
       { name: "Git", icon: <FaGitAlt /> },
       { name: "GitHub", icon: <SiGithub /> },
@@ -281,7 +258,7 @@ const Skills = () => {
               <CategoryCard
                 key={index}
                 variants={cardVariants}
-                accent={category.accent}
+                accentColor={category.accentColor}
               >
                 <CategoryHeader>
                   <CategoryIcon color={category.color} bg={category.bg}>
@@ -291,7 +268,7 @@ const Skills = () => {
                 </CategoryHeader>
                 <SkillsGrid>
                   {category.skills.map((skill, i) => (
-                    <SkillChip key={i} whileHover={{ scale: 1.04 }}>
+                    <SkillChip key={i}>
                       {skill.icon}
                       {skill.name}
                     </SkillChip>

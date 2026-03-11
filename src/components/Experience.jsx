@@ -3,24 +3,10 @@ import { motion } from "framer-motion";
 import { FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
 
 const ExperienceSection = styled.section`
-  padding: 120px 10%;
+  padding: 100px 10%;
   position: relative;
-  background: var(--bg-dark);
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--border-subtle),
-      transparent
-    );
-  }
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
 `;
 
 const Container = styled.div`
@@ -29,9 +15,6 @@ const Container = styled.div`
 `;
 
 const SectionLabel = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -49,9 +32,7 @@ const SectionTitle = styled(motion.h2)`
   line-height: 1.2;
 
   span {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
   }
 `;
 
@@ -99,7 +80,7 @@ const TimelineDot = styled.div`
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--bg-dark);
+  background: var(--bg-card);
   border: 3px solid var(--primary);
   z-index: 2;
   display: flex;
@@ -122,7 +103,7 @@ const TimelineDot = styled.div`
 `;
 
 const ExperienceCard = styled.div`
-  background: var(--bg-card);
+  background: var(--bg-dark);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 2rem;
@@ -130,8 +111,7 @@ const ExperienceCard = styled.div`
 
   &:hover {
     border-color: var(--border-hover);
-    box-shadow: 0 12px 40px rgba(108, 99, 255, 0.06);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   }
 `;
 
@@ -159,9 +139,9 @@ const TypeBadge = styled.span`
   font-weight: 600;
   padding: 0.35rem 0.9rem;
   border-radius: 50px;
-  background: rgba(0, 212, 170, 0.1);
-  color: var(--accent);
-  border: 1px solid rgba(0, 212, 170, 0.2);
+  background: rgba(43, 90, 77, 0.08);
+  color: var(--primary);
+  border: 1px solid rgba(43, 90, 77, 0.15);
   white-space: nowrap;
 `;
 
@@ -176,7 +156,7 @@ const CompanyInfo = styled.div`
 const CompanyName = styled.span`
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--primary-light);
+  color: var(--primary);
 `;
 
 const Location = styled.span`

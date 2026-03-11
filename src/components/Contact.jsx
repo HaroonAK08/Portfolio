@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { keyframes } from "@emotion/react";
 import { motion } from "framer-motion";
 import {
   FaEnvelope,
@@ -11,48 +10,11 @@ import {
 } from "react-icons/fa";
 import { useRef, useState } from "react";
 
-const pulse = keyframes`
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-`;
-
 const ContactSection = styled.section`
-  padding: 120px 10%;
+  padding: 100px 10%;
   position: relative;
-  background: var(--bg-dark);
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--border-subtle),
-      transparent
-    );
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -200px;
-    right: -100px;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(108, 99, 255, 0.06) 0%,
-      transparent 70%
-    );
-    animation: ${pulse} 6s ease-in-out infinite;
-    pointer-events: none;
-  }
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
 `;
 
 const Container = styled.div`
@@ -63,9 +25,6 @@ const Container = styled.div`
 `;
 
 const SectionLabel = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -83,9 +42,7 @@ const SectionTitle = styled(motion.h2)`
   line-height: 1.2;
 
   span {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
   }
 `;
 
@@ -118,7 +75,7 @@ const ContactCard = styled.a`
   align-items: center;
   gap: 1rem;
   padding: 1.2rem 1.5rem;
-  background: var(--bg-card);
+  background: var(--bg-dark);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   transition: var(--transition);
@@ -127,9 +84,8 @@ const ContactCard = styled.a`
 
   &:hover {
     border-color: var(--border-hover);
-    background: var(--bg-card-hover);
-    transform: translateX(6px);
-    box-shadow: 0 8px 30px rgba(108, 99, 255, 0.06);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transform: translateX(4px);
   }
 `;
 
@@ -137,7 +93,7 @@ const ContactIcon = styled.div`
   width: 44px;
   height: 44px;
   border-radius: var(--radius-sm);
-  background: rgba(108, 99, 255, 0.1);
+  background: rgba(43, 90, 77, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,7 +128,7 @@ const SocialLink = styled(motion.a)`
   width: 44px;
   height: 44px;
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
+  background: var(--bg-dark);
   border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -184,8 +140,6 @@ const SocialLink = styled(motion.a)`
   &:hover {
     color: var(--primary);
     border-color: var(--border-hover);
-    background: rgba(108, 99, 255, 0.1);
-    transform: translateY(-3px);
   }
 `;
 
@@ -193,15 +147,10 @@ const ContactForm = styled(motion.form)`
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  background: var(--bg-card);
+  background: var(--bg-dark);
   padding: 2.5rem;
   border-radius: var(--radius-xl);
   border: 1px solid var(--border-subtle);
-  transition: var(--transition);
-
-  &:hover {
-    border-color: var(--border-hover);
-  }
 `;
 
 const FormRow = styled.div`
@@ -229,7 +178,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  background: var(--bg-dark);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: 0.9rem 1rem;
@@ -241,7 +190,7 @@ const Input = styled.input`
   &:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(43, 90, 77, 0.08);
   }
 
   &::placeholder {
@@ -250,7 +199,7 @@ const Input = styled.input`
 `;
 
 const TextArea = styled.textarea`
-  background: var(--bg-dark);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: 0.9rem 1rem;
@@ -264,7 +213,7 @@ const TextArea = styled.textarea`
   &:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(43, 90, 77, 0.08);
   }
 
   &::placeholder {
@@ -277,7 +226,7 @@ const SubmitButton = styled(motion.button)`
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  background: var(--gradient);
+  background: var(--primary);
   color: #fff;
   border: none;
   border-radius: var(--radius-md);
@@ -287,11 +236,11 @@ const SubmitButton = styled(motion.button)`
   font-family: inherit;
   cursor: pointer;
   transition: var(--transition);
-  box-shadow: 0 4px 25px rgba(108, 99, 255, 0.3);
 
   &:hover {
-    box-shadow: 0 8px 40px rgba(108, 99, 255, 0.4);
-    transform: translateY(-2px);
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   }
 
   &:disabled {
@@ -311,7 +260,7 @@ const CTABanner = styled(motion.div)`
   margin-top: 4rem;
   text-align: center;
   padding: 3rem 2rem;
-  background: var(--gradient-subtle);
+  background: var(--bg-dark);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
 
